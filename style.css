@@ -1,3 +1,4 @@
+/* Topbar */
 #topbar {
     position: fixed;
     width: 100%;
@@ -8,14 +9,14 @@
     align-items: center;
     justify-content: center;
     display: flex;
-    z-index: 1;
+    z-index: 10;
 }
 
 h1 {
-    z-index: 3; 
-    font-family: Verdana, Geneva, Tahoma, sans-serif; 
-    color: black; 
-    position: relative; 
+    z-index: 3;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: black;
+    position: relative;
     align-self: center;
     -webkit-text-stroke: 1px white; /* Chrome/Safari */
     text-shadow:
@@ -26,7 +27,7 @@ h1 {
         0 1px 0 white,
         0 -1px 0 white,
         1px 0 0 white,
-        -1px 0 0 white; /* fallback for other browsers */
+        -1px 0 0 rgb(171, 59, 59);
 }
 
 #img01 {
@@ -35,6 +36,155 @@ h1 {
     z-index: 4;
 }
 
+/* Page layout */
+body {
+    background-color: rgb(235, 226, 226);
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-top: 2.25cm; /* space for fixed topbar */
+    box-sizing: border-box;
+}
+
 #mainBody {
-    
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    min-height: calc(100vh - 2.25cm);
+    box-sizing: border-box;
+}
+
+/* Car of the Day card */
+
+/* Layout: sidebar + content */
+.layout {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 1rem;
+    /* stretch sidebar to match main content height */
+    align-items: stretch;
+}
+
+.sidebar {
+    background: #fff;
+    border-right: 1px solid rgba(0,0,0,0.06);
+    padding: 1.5rem;
+    /* let the sidebar stretch to match main content height (use grid align-items: stretch) */
+    min-height: auto;
+    box-sizing: border-box;
+}
+.sidebar ul { list-style: none; padding: 0; margin: 0; }
+.sidebar li { margin: 0.5rem 0; }
+.sidebar a {
+    color: #0056a2;
+    text-decoration: none;
+    font-weight: 700;
+    display: block;
+    padding: 0.65rem 0.9rem;
+    border-radius: 8px;
+    font-size: 1.05rem;
+    margin: 0.25rem 0;
+}
+.sidebar a:hover {
+    background: rgba(0,86,162,0.08);
+    color: #003f78;
+}
+
+.content { display: flex; flex-direction: column; justify-content: flex-start; align-items: center; padding: 2rem; min-height: calc(100vh - 2.25cm); gap: 2rem; }
+
+/* Centered inner container so car and table align vertically (left edges) */
+.main-inner { width: 100%; max-width: 920px; display: flex; flex-direction: column; gap: 1.5rem; align-items: flex-start; }
+
+/* Car of the Day card (fixed main box size) */
+.car-card {
+    background: linear-gradient(180deg, #ffffff 0%, #f6f6f6 100%);
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    overflow: hidden;
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    max-width: 650px;
+    height: 360px;
+    align-items: center;
+    padding: 1rem;
+}
+
+.car-image {
+    width: 300px;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    flex-shrink: 0;
+    background: #ddd;
+}
+
+.car-content { flex: 1; }
+.car-title { margin: 0 0 6px; font-size: 1.25rem; color: #1a1a1a; }
+.car-desc { margin: 0 0 10px; color: #444; }
+
+.car-cta {
+    display: inline-block;
+    background: #0056a2;
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+}
+.car-cta:hover { background: #003f78; }
+
+/* Templates table styles */
+.table-section { padding: 1.5rem 2rem; width: 100%; box-sizing: border-box; }
+.table-section h3 { margin: 0 0 0.75rem; color: #1a1a1a; }
+.table-wrap { background: #fff; border-radius: 8px; padding: 0.75rem; box-shadow: 0 6px 18px rgba(0,0,0,0.06); width: 100%; }
+.templates-table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+.templates-table th, .templates-table td { padding: 0.6rem 0.75rem; border-bottom: 1px solid rgba(0,0,0,0.06); text-align: left; }
+.templates-table thead th { background: #f3f6fb; font-weight: 700; color: #0b3b66; }
+.templates-table tbody tr:hover { background: rgba(0,86,162,0.03); }
+
+/* Hover and entrance animations */
+.car-card {
+    /* entrance animation and hover transitions */
+    animation: fadeUp 320ms ease both;
+    transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.car-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 50px rgba(0,0,0,0.18);
+}
+
+.table-wrap { animation: fadeIn 360ms ease both; }
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .car-card, .table-wrap, .sidebar a { animation: none !important; transition: none !important; }
+}
+
+/* Footer */
+footer {
+    width: 100%;
+    text-align: center;
+    padding: 0.75rem 1rem;
+    margin-top: 2rem;
+    background: linear-gradient(180deg, #ffffff 0%, #fbfcfd 100%);
+    color: #333;
+    font-size: 0.95rem;
+    border-top: 1px solid rgba(0,0,0,0.06);
+    box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+    footer { font-size: 0.88rem; padding: 0.6rem 0.75rem; }
 }

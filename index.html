@@ -3,10 +3,11 @@
 
 <head>
     <title>Home Page - Wheelz On Fire</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div> <!-- HEADER HERE -->
+    <div> <!-- CUSTOM HEADER  -->
         <div id="topbar">
              <img id="img01" src="img-sources/logo.png">
 
@@ -17,11 +18,53 @@
     </div>
 
 
-    <div id="mainBody">
+    <div class="layout">
+        <nav class="sidebar" aria-label="Main Navigation">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Reviews</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
 
+        <main id="mainBody" class="content">
+            <div class="car-card" role="region" aria-label="Car of the Day">
+                <img class="car-image" src="img-sources/caroftheday.png" alt="Mazda RX7 | Sports Coupe">
+                <div class="car-content">
+                    <h2 class="car-title">Car of the Day: Mazda RX-7</h2>
+                    <p class="car-desc">The Mazda RX-7 is what happens when a sports car decides it wants to be both a lightweight feather and a tiny angry vacuum cleaner. Powered by Mazda’s famousl rotary engine, basically a spinning Dorito of fury, it revs high, sounds wild, and drinks fuel like it’s happy hour. Sleek, low, and unmistakably 80s–90s cool, the RX-7 earned its cult status by being lightweight, perfectly balanced, and surprisingly friendly to drive, until you push the boost too far and it reminds you who’s in charge.</p>
+                    <a class="car-cta" href="#" role="button">Buy now!</a>
+                </div>
+            </div>
+            <div class="main-inner">
+                <!-- Templates table populated from JavaScript (below car) -->
+            <section class="table-section" aria-label="Templates table">
+                <h3>Cars in stock</h3>
+                <div class="table-wrap">
+                    <table id="templatesTable" class="templates-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- populated by scripts.js -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            </div>
+        </main>
     </div>
-</body>
 
-<link rel="stylesheet" href="style.css">
+    <footer>
+        &copy; Unpaid Development Studios
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
 
 </html>
